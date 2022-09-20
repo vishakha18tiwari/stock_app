@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+{% block content %}
+LET'S CREATE YOUR ACCOUNT 
+{% if form.errors %}
+{{form.errors}}
+{% endif %}
+<form method="post">
+    {{form.as_p}}
+    {% csrf_token %}
+    <button type='submit'>SUBMIT</button>
+</form>
+{% endblock content %}

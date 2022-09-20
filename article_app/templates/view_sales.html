@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang='eng'>
+<style>
+        table, th, td {
+          border:1px solid black;
+        }
+</style>
+<h1> SALES DONE TILL NOW   !!</h1>
+<body>
+    <ul>
+    <table style="width:100%">    
+        <tr>
+            <th>ARTICLE_ID</th>
+            <th>SELLING_DATE</th> 
+            <th>COST_PRICE</th>
+            <th>SELLING_PRICE</th> 
+            <th>CUSTOMER_NAME</th>
+          </tr>
+    {% for items in sales %}
+    <tr>
+    <td>{{items.article_id}}</td>
+    <td>{{items.selling_date}}</td>
+    <td>{{items.cost_price}}</td>
+    <td>{{items.selling_price}}</td>
+    <td>{{items.customer_name}}</td>
+    <td><a type ='submit' href='/delete_sales/{{items.id}}'>DELETE</a></td>
+    <td><a type ='submit' href='/edit_sales/{{items.id}}'>EDIT</a></td><br>
+    </tr>
+    {% endfor %}
+    </table>
+    </ul>
+</body>    
+</html>

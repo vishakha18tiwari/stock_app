@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang='eng'>
+<h1> UPDATE PRODUCT !! </h1>
+<body>
+    <ul>
+        <form action="/edit_product/update_product/{{ product.id }}/" method="post">
+            {% csrf_token %}
+            article_name:<br>
+            <input name="article_name" value="{{ product.article_name}}">
+            <br><br>
+            article_code:<br>
+            <input name="article_code" value="{{ product.article_code }}">
+            <br><br>
+            article_size:<br>
+            <input name="article_size" value="{{ product.article_size}}">
+            <br><br>
+            article_colour:<br>
+            <input name="article_colour" value="{{ product.article_colour }}">
+            <br><br>
+
+            <input type="submit" value="Submit">
+        </form>
+    </ul>
+</body>    
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang='eng'>
+<h1> FOLLOWING PRODUCTS ARE AVAILABLE  !!</h1>
+<body>
+    <ul>
+    {% for items in articles %}
+    {{items.article_name}}
+    {{items.article_code}}
+    {{items.article_size}}
+    {{items.article_colour}}
+    <img src={{items.article_image.url}} width=200 height=200><br>
+    <a type ='submit' href='/edit_product/{{items.id}}'>EDIT_PRODUCT</a><br>
+    <a type='submit' href='/delete_product/{{items.id}}'>DELETE_PRODUCT </a><br>
+    <a type='submit' href = '/addproductsale/{{items.id}}'>ADD_PRODUCT_SALE</a><br>
+    {% endfor %}
+    </ul>
+</body>    
+</html>
