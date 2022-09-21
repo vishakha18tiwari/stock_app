@@ -8,11 +8,11 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-@login_required
+@login_required(login_url='/tupphomeshop/')
 def home_page(request):
     return render(request,'home.html')
 
-@login_required
+@login_required(login_url='/tupphomeshop/')
 def add_products(request):
     form = create_product_form()
     message=''
@@ -34,7 +34,7 @@ def view_products(request):
     articles = article_details.objects.all()
     return render(request,'view_products.html',context={'articles':articles})
 
-@login_required            
+@login_required(login_url='/tupphomeshop/')          
 def edit_product(request,i):
     product = article_details.objects.get(id=i)
     templates = loader.get_template('update_product.html')
@@ -43,7 +43,7 @@ def edit_product(request,i):
               }
     return HttpResponse(templates.render(context,request))
 
-@login_required
+@login_required(login_url='/tupphomeshop/')
 def update_product(request,i):
     p_article_name = request.POST['article_name']
     p_article_code = request.POST['article_code']
@@ -57,13 +57,13 @@ def update_product(request,i):
     product.save()
     return redirect('/home/')
 
-@login_required
+@login_required(login_url='/tupphomeshop/')
 def delete_product(request,i):
     product = article_details.objects.filter(id=i)
     product.delete()
     return redirect('/viewproducts/')
 
-@login_required
+@login_required(login_url='/tupphomeshop/')
 def add_product_sales(request,i):
     message =''
     form = add_sales_form()
@@ -81,17 +81,18 @@ def add_product_sales(request,i):
         message =' Please enter valid values'
     return render(request,'add_sales.html',context={'form':form,'message':message})
 
+@login_required(login_url='/tupphomeshop/')
 def view_sales(request):
     obj = article_sale.objects.all()
     return render(request,'view_sales.html',context={'sales':obj})
 
-@login_required
+@login_required(login_url='/tupphomeshop/')
 def delete_sales(request,i):
     obj = article_sale.objects.get(id=i)
     obj.delete()
     return redirect('/view_sales/')
 
-@login_required
+@login_required(login_url='/tupphomeshop/')
 def edit_sales(request,i):
     obj = article_sale.objects.get(id=i)
     obj.article_id = request.POST['article_id']
