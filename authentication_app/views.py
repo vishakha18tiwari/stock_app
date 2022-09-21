@@ -34,3 +34,7 @@ def login_page(request):
         message="LOGIN FAILED !!" \
                 "Enter correct username and password"
     return render(request,'login.html',context={'form':form,'message':message})
+
+def logout_page(request):
+    logout(request)
+    return redirect('/tupphomeshop/')
