@@ -18,3 +18,4 @@ sqlparse==0.4.2
 thinker==1.1.1
 urllib3==1.26.11
 Werkzeug==2.2.1
+djangorestframework
