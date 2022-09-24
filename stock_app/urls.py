@@ -13,12 +13,20 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from xml.etree.ElementInclude import include
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from authentication_app.views import signup_page, tupphomeshop, login_page, logout_page
 from article_app.views import home_page, add_products , view_products, edit_product, delete_product, update_product ,add_product_sales, view_sales, edit_sales, delete_sales
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework import routers
+from .views import DetailsViewSet,SalesViewSet, list_article
+
+
+router = routers.DefaultRouter()
+router.register(r'details', DetailsViewSet)
+router.register(r'sales', SalesViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -36,4 +44,6 @@ urlpatterns = [
     path('view_sales/',view_sales),
     path('edit_sales/<int:i>/',edit_sales),
     path('delete_sales/<int:i>',delete_sales),
+    path('',include(router.urls)),
+    path('list_articles/',list_article)
 ]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
